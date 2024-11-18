@@ -3,25 +3,30 @@ import 'package:flutter/material.dart';
 import '../models/task.dart';
 import '../utils/shared_preferences_helper.dart';
 
+// ststefull widget manages the to do list cahnges are task are added ,completed or deleted
 class TodoListScreen extends StatefulWidget {
   const TodoListScreen({super.key});
 
-  @override
+  @override //createState: Links the state object _TodoListScreenState to this widget, enabling dynamic changes.
+
   State<TodoListScreen> createState() => _TodoListScreenState();
 }
 
+//Attributes and Initialization
 class _TodoListScreenState extends State<TodoListScreen> {
-  final List<Task> _tasks = [];
+  final List<Task> _tasks = []; // list to store the all task
 
   @override
   void initState() {
-    super.initState();
-    _loadTasks();
+    super
+        .initState(); //initState: Called when the widget is first created. It loads tasks from persistent storage.
   }
 
+//loading and saving task
   Future<void> _loadTasks() async {
     final tasks = await SharedPreferencesHelper.loadTasks();
     setState(() {
+      //setstate to refresh the ui
       _tasks.addAll(tasks);
     });
   }
@@ -30,7 +35,9 @@ class _TodoListScreenState extends State<TodoListScreen> {
     await SharedPreferencesHelper.saveTasks(_tasks);
   }
 
+//managing task
   void _addTask(String title) {
+    //-addTask adds anew task to _task ansd save it
     setState(() {
       _tasks.add(Task(title: title, isCompleted: false));
     });
@@ -38,12 +45,14 @@ class _TodoListScreenState extends State<TodoListScreen> {
   }
 
   void _toggleTaskCompletion(int index) {
+    //_toggleTaskCompletion: Marks a task as completed or uncompleted by toggling isCompleted.
     setState(() {
       _tasks[index].isCompleted = !_tasks[index].isCompleted;
     });
     _saveTasks();
   }
 
+//delete task
   void _deleteTask(int index) {
     setState(() {
       _tasks.removeAt(index);
@@ -86,6 +95,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
     );
   }
 
+//ui construction
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -128,8 +138,10 @@ class _TodoListScreenState extends State<TodoListScreen> {
               },
             ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _showAddTaskDialog,
-        child: const Icon(Icons.add),
+        onPressed: _showAddTaskDialog, // Opens the dialog to add new tasks.
+        child: const Icon(Icons.add), // Add icon for the button.
+        backgroundColor:
+            Color.fromARGB(255, 128, 5, 228), // Set the color to pink.
       ),
     );
   }
