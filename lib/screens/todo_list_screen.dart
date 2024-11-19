@@ -141,7 +141,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
         onPressed: _showAddTaskDialog, // Opens the dialog to add new tasks.
         child: const Icon(Icons.add), // Add icon for the button.
         backgroundColor:
-            Color.fromARGB(255, 128, 5, 228), // Set the color to pink.
+            Color.fromARGB(255, 237, 21, 240), // Set the color to pink.
       ),
     );
   }
