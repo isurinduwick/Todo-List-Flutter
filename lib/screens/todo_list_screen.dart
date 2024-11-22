@@ -138,10 +138,10 @@ class _TodoListScreenState extends State<TodoListScreen> {
               },
             ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _showAddTaskDialog, // Opens the dialog to add new tasks.
-        child: const Icon(Icons.add), // Add icon for the button.
+        onPressed: _showAddTaskDialog, // Add icon for the button.
         backgroundColor:
-            Color.fromARGB(255, 237, 21, 240), // Set the color to pink.
+            const Color.fromARGB(255, 237, 21, 240), // Opens the dialog to add new tasks.
+        child: const Icon(Icons.add), // Set the color to pink.
       ),
     );
   }
